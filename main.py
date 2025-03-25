@@ -8,8 +8,8 @@ import zipfile
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from reqs.itunes import *
-from reqs.store import *
+from .reqs.itunes import *
+from .reqs.store import *
 import reprlib
 
 reprlib.aRepr.maxstring = 200
@@ -203,7 +203,7 @@ class IPATool(object):
         logger.info('Looking up app in country %s with BundleID %s' % (args.country, s))
         iTunes = iTunesClient(self.sess)
         appInfos = iTunes.lookup(bundleId=args.bundle_id, appId=args.appId, country=args.country)
-        if appInfos.resultCount != 1:
+        if appInfos.resultCount < 1:
             logger.fatal("Failed to find app in country %s with %s" % (args.country, s))
             return
         appInfo = appInfos.results[0]

@@ -3,12 +3,12 @@ import json
 import pickle
 import plistlib
 import requests
-from reqs.schemas.store_authenticate_req import StoreAuthenticateReq
-from reqs.schemas.store_authenticate_resp import StoreAuthenticateResp
-from reqs.schemas.store_buyproduct_req import StoreBuyproductReq
-from reqs.schemas.store_buyproduct_resp import StoreBuyproductResp
-from reqs.schemas.store_download_req import StoreDownloadReq
-from reqs.schemas.store_download_resp import StoreDownloadResp
+from .schemas.store_authenticate_req import StoreAuthenticateReq
+from .schemas.store_authenticate_resp import StoreAuthenticateResp
+from .schemas.store_buyproduct_req import StoreBuyproductReq
+from .schemas.store_buyproduct_resp import StoreBuyproductResp
+from .schemas.store_download_req import StoreDownloadReq
+from .schemas.store_download_resp import StoreDownloadResp
 
 class StoreException(Exception):
     def __init__(self, req, resp, errMsg, errType=None):
@@ -166,7 +166,7 @@ class StoreClient(object):
         kbsync = itunes_internal.pop('kbsync')
 
         if not appVer:
-            from reqs.itunes import iTunesClient
+            from .itunes import iTunesClient
             iTunes = iTunesClient(self.sess)
             appVer = iTunes.getAppVerId(appId, hdrs['X-Apple-Store-Front'])
 
