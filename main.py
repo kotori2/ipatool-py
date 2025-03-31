@@ -202,7 +202,7 @@ class IPATool(object):
             s = 'AppID %s' % args.appId
         logger.info('Looking up app in country %s with BundleID %s' % (args.country, s))
         iTunes = iTunesClient(self.sess)
-        appInfos = iTunes.lookup(bundleId=args.bundle_id, appId=args.appId, country=args.country)
+        appInfos = iTunes.lookup(bundleId=args.bundle_id, appId=args.appId, country=args.country, term=os.urandom(8).hex())
         if appInfos.resultCount < 1:
             logger.fatal("Failed to find app in country %s with %s" % (args.country, s))
             return
